@@ -14,4 +14,13 @@ public class Card {
         this.titulo = titulo;
         this.strCuerpo = strCuerpo;
     }
+
+    public void setCuerpo(String strCuerpo) {
+        this.strCuerpo = strCuerpo;
+
+    }
+
+    public void setCuerpo(int cuerpo) {
+        this.cuerpo = cuerpo;
+    }
 }
