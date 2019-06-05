@@ -30,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private List<Card> cardDataList = new ArrayList<>();
     private static final String URL_LOGIN = "http://endor.ceisufro.cl:8080/api/auth/login";
     private static final String URL_REFRESH_TOKEN = "http://endor.ceisufro.cl:8080/api/auth/token";
+    private final String URL_DEVICE = "http://endor.ceisufro.cl:8080/api/plugins/telemetry/DEVICE/c32500b0-7290-11e9-828d-5ba8155d5fc8/values/timeseries";
     private static String token;
-    private static String refreshToken;
+
+    private Timer timer;
 
     @TargetApi(Build.VERSION_CODES.O)
     @Override
@@ -44,13 +46,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(cardAdapter);
         StudentDataPrepare();
+        timer = new Timer();
+        token = null;
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
+        runProcessRequestData();
         runProcessGetToken();
     }
 
@@ -60,15 +64,20 @@ public class MainActivity extends AppCompatActivity {
         cardDataList.add(data);
         data = new Card("Humedad", 24);
         cardDataList.add(data);
-        data = new Card("Concentracion de gases", "medio");
+        data = new Card("Concentración de gases", "medio");
         cardDataList.add(data);
     }
 
 
     private void runProcessGetToken() {
-        Timer timer = new Timer();
+
         TokenTimerTask tokenTimerTask = new TokenTimerTask(URL_LOGIN, URL_REFRESH_TOKEN);
         timer.schedule(tokenTimerTask, 0l, 1000 * 60 * 14);
 
+    }
+
+    private void runProcessRequestData() {
+        APIComunicator apiComunicator = new APIComunicator(URL_DEVICE, token);
+        timer.schedule(apiComunicator, 1000, 1000);
     }
 }
