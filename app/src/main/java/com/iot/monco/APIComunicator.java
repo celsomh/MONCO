@@ -1,41 +1,58 @@
 package com.iot.monco;
 
-import android.media.session.MediaSession;
+import android.app.Activity;
+import android.os.Handler;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.TimerTask;
 
 public class APIComunicator extends TimerTask {
+
     private TokenTimerTask tokenTimerTask;
     private String uRLDevice;
     private String token;
+    private ManagerCard managerCard;
+    private JSONObject dataJSONObject;
 
-    public APIComunicator(String uRLDevice, TokenTimerTask tokenTimerTask) {
+
+    public APIComunicator(String uRLDevice, TokenTimerTask tokenTimerTask, ManagerCard managerCard) {
+
         this.uRLDevice = uRLDevice;
         this.tokenTimerTask = tokenTimerTask;
+        this.managerCard = managerCard;
     }
 
     @Override
     public void run() {
         token = tokenTimerTask.getToken();
 
-        if (token != null)
-            doRequest();
+        if (token != null) {
+            dataJSONObject = doRequest();
+            if (dataJSONObject != null) {
+                sendData(dataJSONObject);
+            }
+        }
+
 
     }
 
-    private void doRequest() {
+    private void sendData(JSONObject jsonObject) {
+        managerCard.setJSONArray(jsonObject);
+    }
+
+    private JSONObject doRequest() {
         OutputStream outputStream = null;
         InputStream inputStream = null;
         BufferedReader bufferedReader;
@@ -51,11 +68,11 @@ public class APIComunicator extends TimerTask {
 
             urlConnection.connect();
             statusCode = urlConnection.getResponseCode();
-            Log.i("Resul", "statuscode " + statusCode);
+
             inputStream = urlConnection.getInputStream();
-            Log.i("Resul", "inputStream");
+
             if (statusCode == 200) {
-                Log.i("Resul", "condicion");
+
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -65,10 +82,14 @@ public class APIComunicator extends TimerTask {
                     response.append(line + "\n");
                 }
                 bufferedReader.close();
-                Log.i("Result ", response.toString());
+                JSONObject jsonObject = new JSONObject(response.toString());
+                return jsonObject;
             }
 
-        } catch (Exception e) {
+
+        } catch (JSONException e) {
+            Log.i("Error", e.getMessage());
+        } catch (IOException e) {
 
         } finally {
             try {
@@ -83,5 +104,8 @@ public class APIComunicator extends TimerTask {
 
             }
         }
+        return null;
     }
+
+
 }

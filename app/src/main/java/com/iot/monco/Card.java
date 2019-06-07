@@ -1,18 +1,16 @@
 package com.iot.monco;
 
+import java.util.List;
+
 public class Card {
     String titulo;
-    int cuerpo;
     String strCuerpo;
+    private String id;
 
-    public Card(String titulo, int cuerpo) {
-        this.titulo = titulo;
-        this.cuerpo = cuerpo;
-    }
-
-    public Card(String titulo, String strCuerpo) {
+    public Card(String id, String titulo, String strCuerpo) {
         this.titulo = titulo;
         this.strCuerpo = strCuerpo;
+        this.id = id;
     }
 
     public void setCuerpo(String strCuerpo) {
@@ -20,7 +18,9 @@ public class Card {
 
     }
 
-    public void setCuerpo(int cuerpo) {
-        this.cuerpo = cuerpo;
+    public String getId() {
+        return id;
     }
+
+
 }

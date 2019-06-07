@@ -1,14 +1,11 @@
 package com.iot.monco;
 
-
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.List;
 import java.util.Random;
@@ -35,7 +32,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         viewHolder.parent.setBackgroundColor(currentColor);
         viewHolder.titulo.setText(data.titulo);
-        viewHolder.cuerpo.setText(String.valueOf(data.cuerpo));
+        viewHolder.cuerpo.setText(String.valueOf(data.strCuerpo));
     }
 
     @Override
