@@ -7,34 +7,49 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ManagerData {
 
     private JSONObject jsonObject;
-    private HashMap hashMap;
+    private HashMap<String, TextView> textViewHashMap;
+    private Activity activity;
 
-    public ManagerData(HashMap hashMap) {
-        this.hashMap=hashMap;
+    public ManagerData(HashMap<String, TextView> textViewHashMap, Activity activity) {
+        this.textViewHashMap = textViewHashMap;
+        this.activity = activity;
     }
 
     public void setJSONArray(JSONObject jsonObject) {
         this.jsonObject = jsonObject;
-        updateCards();
+        updateTextView();
     }
 
-    private void updateCards() {
-        for (int i = 0; i < hashMap.size(); i++) {
-            hashMap.
-            Card card = cardList.get(i);
-            String id = card.getId();
-            String value = parseJSON(id);
-            if (value != null) {
-                card.strCuerpo = value;
-                Log.i("value", value);
+    private void updateTextView() {
+        this.activity.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                for (Map.Entry<String, TextView> entry : textViewHashMap.entrySet()) {
+
+
+                    String value = parseJSON(entry.getKey());
+                    if (value != null) {
+                        entry.getValue().setText(value);
+                        Log.i("value", value);
+                    }
+
+                }
+
+
             }
-        }
+
+        });
     }
 
     public String parseJSON(String nameObjectJSON) {
@@ -42,7 +57,7 @@ public class ManagerData {
 
 
             String strJSONObject = jsonObject.getString(nameObjectJSON);
-            Log.i("nameObjectJSON", nameObjectJSON);
+
 
             JSONArray jsonArray = new JSONArray(strJSONObject);
 

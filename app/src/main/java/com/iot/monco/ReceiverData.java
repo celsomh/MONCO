@@ -17,10 +17,11 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TimerTask;
 
-public class APIComunicator extends TimerTask {
+public class ReceiverData extends TimerTask {
 
     private TokenTimerTask tokenTimerTask;
     private String uRLDevice;
@@ -29,8 +30,8 @@ public class APIComunicator extends TimerTask {
     private JSONObject dataJSONObject;
 
 
-    public APIComunicator(String uRLDevice, TokenTimerTask tokenTimerTask, HashMap hashMap) {
-        managerData = new ManagerData(hashMap);
+    public ReceiverData(String uRLDevice, TokenTimerTask tokenTimerTask, HashMap<String, TextView> textViewHashMap, Activity activity) {
+        managerData = new ManagerData(textViewHashMap, activity);
         this.uRLDevice = uRLDevice;
         this.tokenTimerTask = tokenTimerTask;
 
@@ -51,7 +52,7 @@ public class APIComunicator extends TimerTask {
     }
 
     private void sendData(JSONObject jsonObject) {
-        ManagerData.setJSONArray(jsonObject);
+        managerData.setJSONArray(jsonObject);
     }
 
     private JSONObject doRequest() {

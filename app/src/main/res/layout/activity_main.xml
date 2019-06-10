@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -14,12 +15,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Humedad"
+            android:text="Humedad: "
             android:textColor="@color/colorDark"
             android:textSize="@dimen/titulo" />
 
         <TextView
-            android:id="@+id/id_textview_humedad"
+            android:id="@+id/humedad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorDark"
@@ -34,12 +35,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gas"
+            android:text="Gas: "
             android:textColor="@color/colorDark"
             android:textSize="@dimen/titulo" />
 
         <TextView
-            android:id="@+id/id_textview_gas"
+            android:id="@+id/gas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorDark"
