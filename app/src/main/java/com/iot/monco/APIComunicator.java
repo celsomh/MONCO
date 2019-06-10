@@ -3,6 +3,7 @@ package com.iot.monco;
 import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,7 +16,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
+
+import java.util.HashMap;
 import java.util.TimerTask;
 
 public class APIComunicator extends TimerTask {
@@ -23,15 +25,15 @@ public class APIComunicator extends TimerTask {
     private TokenTimerTask tokenTimerTask;
     private String uRLDevice;
     private String token;
-    private ManagerCard managerCard;
+    private ManagerData managerData;
     private JSONObject dataJSONObject;
 
 
-    public APIComunicator(String uRLDevice, TokenTimerTask tokenTimerTask, ManagerCard managerCard) {
-
+    public APIComunicator(String uRLDevice, TokenTimerTask tokenTimerTask, HashMap hashMap) {
+        managerData = new ManagerData(hashMap);
         this.uRLDevice = uRLDevice;
         this.tokenTimerTask = tokenTimerTask;
-        this.managerCard = managerCard;
+
     }
 
     @Override
@@ -49,7 +51,7 @@ public class APIComunicator extends TimerTask {
     }
 
     private void sendData(JSONObject jsonObject) {
-        managerCard.setJSONArray(jsonObject);
+        ManagerData.setJSONArray(jsonObject);
     }
 
     private JSONObject doRequest() {

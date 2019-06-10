@@ -2,26 +2,21 @@ package com.iot.monco;
 
 import android.app.Activity;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
+public class ManagerData {
 
-public class ManagerCard {
-    private List<Card> cardList;
     private JSONObject jsonObject;
+    private HashMap hashMap;
 
-
-
-
-    public ManagerCard(List<Card> cardList, Activity activity) {
-        this.cardList = cardList;
+    public ManagerData(HashMap hashMap) {
+        this.hashMap=hashMap;
     }
 
     public void setJSONArray(JSONObject jsonObject) {
@@ -30,7 +25,8 @@ public class ManagerCard {
     }
 
     private void updateCards() {
-        for (int i = 0; i < cardList.size(); i++) {
+        for (int i = 0; i < hashMap.size(); i++) {
+            hashMap.
             Card card = cardList.get(i);
             String id = card.getId();
             String value = parseJSON(id);
