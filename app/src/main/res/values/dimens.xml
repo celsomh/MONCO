@@ -2,4 +2,9 @@
 <resources>
     <dimen name="titulo">20sp</dimen>
     <dimen name="dato">20sp</dimen>
+    <dimen name="activity_horizontal_margin">10dp</dimen>
+    <dimen name="activity_vertical_margin">10dp</dimen>
+
+
+
 </resources>

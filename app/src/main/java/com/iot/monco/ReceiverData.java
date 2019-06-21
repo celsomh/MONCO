@@ -1,11 +1,12 @@
 package com.iot.monco;
 
 import android.app.Activity;
-import android.os.Handler;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
+import com.iot.monco.view.CardListAdapter;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,9 +17,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TimerTask;
 
 public class ReceiverData extends TimerTask {
@@ -30,8 +28,8 @@ public class ReceiverData extends TimerTask {
     private JSONObject dataJSONObject;
 
 
-    public ReceiverData(String uRLDevice, TokenTimerTask tokenTimerTask, HashMap<String, TextView> textViewHashMap, Activity activity) {
-        managerData = new ManagerData(textViewHashMap, activity);
+    public ReceiverData(String uRLDevice, TokenTimerTask tokenTimerTask, String[] idData, CardListAdapter cardListAdapter, Activity activity) {
+        managerData = new ManagerData(idData, cardListAdapter, activity);
         this.uRLDevice = uRLDevice;
         this.tokenTimerTask = tokenTimerTask;
 
@@ -52,7 +50,7 @@ public class ReceiverData extends TimerTask {
     }
 
     private void sendData(JSONObject jsonObject) {
-        managerData.setJSONArray(jsonObject);
+        managerData.setJSONObject(jsonObject);
     }
 
     private JSONObject doRequest() {

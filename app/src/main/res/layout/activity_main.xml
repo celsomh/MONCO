@@ -1,49 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context="com.iot.monco.MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <include layout="@layout/content_main" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Humedad: "
-            android:textColor="@color/colorDark"
-            android:textSize="@dimen/titulo" />
-
-        <TextView
-            android:id="@+id/humedad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorDark"
-            android:textSize="@dimen/dato" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gas: "
-            android:textColor="@color/colorDark"
-            android:textSize="@dimen/titulo" />
-
-        <TextView
-            android:id="@+id/gas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorDark"
-            android:textSize="@dimen/dato" />
-    </LinearLayout>
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

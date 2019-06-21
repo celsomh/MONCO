@@ -32,8 +32,6 @@ public class TokenTimerTask extends TimerTask {
             requestToken();
         else
             requestRefreshToken();
-
-
     }
 
     private String requestToken() {
