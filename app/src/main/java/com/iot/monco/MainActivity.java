@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private Timer timer;
     private ListView listViewCards;
     private CardListAdapter cardListAdapter;
-    private String[] idData = {"humidity", "gas"};
-    private String[] namesCards = {"Humedad", "Gas"};
+    private String[] idData = {"humidity", "gas", "ph", "temperature"};
+    private String[] namesCards = {"Humedad", "Gas", "ph", "Temperatura"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
