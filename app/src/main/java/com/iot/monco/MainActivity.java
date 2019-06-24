@@ -3,8 +3,6 @@ package com.iot.monco;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,22 +44,6 @@ public class MainActivity extends AppCompatActivity {
         startTimer();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.id_opcion_mostrar_en_notificaciones:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     private void startTimer() {
         TokenTimerTask tokenTimerTask = new TokenTimerTask(URL_LOGIN, URL_REFRESH_TOKEN);

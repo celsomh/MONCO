@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/id_opcion_mostrar_en_notificaciones"
-        android:title="Mostrar en notificaciones"></item>
-
-</menu>
