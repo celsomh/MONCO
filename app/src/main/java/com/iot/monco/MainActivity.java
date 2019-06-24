@@ -3,6 +3,7 @@ package com.iot.monco;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -43,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         startTimer();
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
     private void startTimer() {
         TokenTimerTask tokenTimerTask = new TokenTimerTask(URL_LOGIN, URL_REFRESH_TOKEN);
