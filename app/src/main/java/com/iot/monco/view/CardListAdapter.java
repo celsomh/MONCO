@@ -1,7 +1,6 @@
 package com.iot.monco.view;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import com.iot.monco.MainActivity;
 import com.iot.monco.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CardListAdapter extends BaseAdapter {
     private String[] namesCards;
@@ -42,7 +40,6 @@ public class CardListAdapter extends BaseAdapter {
     public Object getItem(int position) {
         return null;
     }
-
 
     public void updateData(ArrayList<String> data) {
         String string[] = data.toArray(new String[0]);

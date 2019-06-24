@@ -2,16 +2,10 @@ package com.iot.monco;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.iot.monco.view.CardListAdapter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         cardListAdapter = new CardListAdapter(this, namesCards);
         listViewCards = findViewById(R.id.id_listview);
-
         listViewCards.setAdapter(cardListAdapter);
 
         timer = new Timer();
@@ -44,15 +37,11 @@ public class MainActivity extends AppCompatActivity {
         startTimer();
     }
 
-
     private void startTimer() {
         TokenTimerTask tokenTimerTask = new TokenTimerTask(URL_LOGIN, URL_REFRESH_TOKEN);
         timer.schedule(tokenTimerTask, 0l, 1000 * 60 * 14);
 
         ReceiverData receiverData = new ReceiverData(URL_DEVICE, tokenTimerTask, idData, cardListAdapter, this);
         timer.schedule(receiverData, 1000, 1000);
-
     }
-
-
 }

@@ -1,5 +1,7 @@
 package com.iot.monco;
 
+import android.util.Log;
+
 import org.json.JSONObject;
 
 import java.io.BufferedWriter;
@@ -24,7 +26,6 @@ public class TokenTimerTask extends TimerTask {
         this.uRLRefreshToken = uRLRefreshToken;
         firstRequest = true;
     }
-
 
     @Override
     public void run() {
@@ -75,11 +76,10 @@ public class TokenTimerTask extends TimerTask {
                 token = jsonObject.getString("token");
                 refreshToken = jsonObject.getString("refreshToken");
                 firstRequest = false;
-
             }
 
         } catch (Exception e) {
-
+            Log.i("Error", e.getMessage());
         } finally {
             try {
                 if (inputStream != null) {
@@ -89,7 +89,7 @@ public class TokenTimerTask extends TimerTask {
                     outputStream.close();
                 }
             } catch (Exception e) {
-
+                Log.i("Error", e.getMessage());
             }
         }
         return null;
@@ -157,7 +157,5 @@ public class TokenTimerTask extends TimerTask {
     public String getToken() {
         return token;
     }
-
-
 }
 

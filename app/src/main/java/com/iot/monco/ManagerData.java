@@ -2,19 +2,14 @@ package com.iot.monco;
 
 import android.app.Activity;
 import android.util.Log;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.iot.monco.view.CardListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ManagerData {
 
@@ -65,6 +60,4 @@ public class ManagerData {
         }
         return null;
     }
-
-
 }
