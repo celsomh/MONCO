@@ -1,0 +1,4 @@
+#Mon Jun 24 22:36:36 GMT-04:00 2019
+base.0=C\:\\Users\\celso\\AndroidStudioProjects\\MONCO\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\out
+path.0=classes.dex
+renamed.0=classes.dex
